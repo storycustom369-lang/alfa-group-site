@@ -11,8 +11,12 @@
 <meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="АЛЬФА ГРУПП">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Шрифт Manrope лежит на нашем сайте (не грузим с серверов Google) */
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url(fonts/manrope-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:swap;src:url(fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
 <style>
 :root{
   --bg:#EEF1F4; --card:#FFFFFF; --ink:#111821; --muted:#55606E; --line:#DDE2E8;
@@ -154,6 +158,8 @@ header{position:sticky;top:0;z-index:20;background:rgba(238,241,244,.92);backdro
 .form input:focus,.form textarea:focus{outline:3px solid #F7C6C8;border-color:var(--red)}
 .form .full{grid-column:1/-1}
 .form .agree{flex-direction:row;align-items:flex-start;gap:10px;font-weight:500;color:var(--muted)}
+.form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form .agree a{color:inherit;text-decoration:underline}
 .form .agree input{min-height:auto;width:20px;height:20px;margin-top:2px;accent-color:var(--red)}
 .form .note{font-size:14px;color:var(--muted);margin:0}
 .form .ok{color:#1E7A48;font-weight:700;margin:0}
@@ -494,7 +500,7 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 <div class="wrap">
   <div class="bento">
     <div class="hero-main">
-      <img src="img/hero2-train.jpg" alt="" fetchpriority="high">
+      <img src="img/hero2-train.webp?v=w1" alt="" fetchpriority="high">
       <div>
         <h1>Контейнерные перевозки от&nbsp;двери до&nbsp;двери</h1>
         <p class="lead">Машина забирает 40-футовый контейнер у вас на складе, основной путь он проходит по железной дороге, а от станции назначения машина довозит его до двери получателя в Сибири или на Дальнем Востоке.</p>
@@ -509,13 +515,13 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
     </div>
 
     <a class="side-card" href="#services">
-      <img src="img/hero2-truck.jpg" alt="Контейнеровоз с 40-футовым контейнером в порту">
+      <img src="img/hero2-truck.webp?v=w1" alt="Контейнеровоз с 40-футовым контейнером в порту">
       <span class="side-title">Автомобильные<br>перевозки</span>
       <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 7h13v10H1z"/><path d="M14 11h4l3 3v3h-7"/><circle cx="5" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span>
     </a>
 
     <a class="side-card" href="#services">
-      <img src="img/hero2-port.jpg" alt="Контейнерное судно у портовых кранов">
+      <img src="img/hero2-port.webp?v=w1" alt="Контейнерное судно у портовых кранов">
       <span class="side-title">Экспорт и импорт</span>
       <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20c2 0 2-1.5 4-1.5S8 20 10 20s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M4 16l1.5-5h13L20 16"/><path d="M9 11V6h6v5"/></svg></span>
     </a>
@@ -537,18 +543,18 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
       <div class="u u-photo">
         <b class="u-big">Свой автопарк</b>
         <p>автоколонна контейнеровозов и собственная ремонтная зона: машины не простаивают</p>
-        <img style="object-position:62% center" src="img/usp-fleet.jpg?v=3" alt="Контейнеровозы на площадке" loading="lazy">
+        <img style="object-position:62% center" src="img/usp-fleet.webp?v=w1" alt="Контейнеровозы на площадке" loading="lazy">
       </div>
       <div class="u u-photo">
         <b class="u-big">5<span class="stars" aria-label="5 звёзд из 5">★★★★★</span></b>
         <p>рейтинг на ATI.SU, крупнейшей бирже грузоперевозок. Код участника 1194559</p>
         <a class="u-link" href="https://ati.su/firms/1194559/info" target="_blank" rel="noopener">Посмотреть профиль <span aria-hidden="true">↗</span></a>
-        <img src="img/usp-ati.jpg?v=4" alt="Профиль компании на ATI.SU с рейтингом 5 звёзд" loading="lazy">
+        <img src="img/usp-ati.webp?v=w1" alt="Профиль компании на ATI.SU с рейтингом 5 звёзд" loading="lazy">
       </div>
       <div class="u u-photo">
         <b class="u-big">Свой терминал</b>
         <p>меньше посредников между вашим грузом и получателем, быстрее и надёжнее</p>
-        <img src="img/usp-terminal.jpg?v=2" alt="Погрузчик с контейнером на терминале" loading="lazy">
+        <img src="img/usp-terminal.webp?v=w1" alt="Погрузчик с контейнером на терминале" loading="lazy">
       </div>
     </div>
   </div>
@@ -566,13 +572,13 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
         <button class="pause" type="button" id="pauseBtn" aria-pressed="false">Приостановить анимацию</button>
       </div>
       <div class="rscene" role="img" aria-label="Маршрут контейнера: машина везёт контейнер со склада на терминал, поезд везёт его по железной дороге, машина доставляет получателю">
-        <img class="plate" src="img/route-plate3.jpg" alt="" width="2172" height="420">
+        <img class="plate" src="img/route-plate3.webp?v=w1" alt="" width="2172" height="420">
         <span class="lbl lbl1"><i class="pin pin1" aria-hidden="true"></i>Ваш склад</span>
         <span class="lbl lbl2"><i class="pin pin2" aria-hidden="true"></i>Железная дорога</span>
         <span class="lbl lbl3"><i class="pin pin3" aria-hidden="true"></i>Получатель</span>
-        <div class="veh v-truck1" aria-hidden="true"><img src="img/truck-side.png" alt=""></div>
-        <div class="veh v-train" aria-hidden="true"><img src="img/train-side.png" alt=""></div>
-        <div class="veh v-truck2" aria-hidden="true"><img src="img/truck-side.png" alt=""></div>
+        <div class="veh v-truck1" aria-hidden="true"><img src="img/truck-side.webp?v=w1" alt=""></div>
+        <div class="veh v-train" aria-hidden="true"><img src="img/train-side.webp?v=w1" alt=""></div>
+        <div class="veh v-truck2" aria-hidden="true"><img src="img/truck-side.webp?v=w1" alt=""></div>
       </div>
       <ol class="rsteps">
         <li class="rs rs1"><b>01 · Ваш склад</b><span>Подаём 40-футовый контейнеровоз к вашему складу, грузите через задние двери</span></li>
@@ -601,37 +607,37 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
           <span class="sp-tag">Основная услуга</span>
           <h3>От двери до двери</h3>
           <p>Москва и область → Иркутская область, Бурятия, Забайкалье. 12 дней от склада до получателя.</p>
-          <div class="ph"><img src="img/svc-door.jpg?v=3" alt="Контейнеровоз у склада отправителя" loading="lazy" width="1200" height="800"></div>
+          <div class="ph"><img src="img/svc-door.webp?v=w1" alt="Контейнеровоз у склада отправителя" loading="lazy" width="1200" height="800"></div>
           <div class="row"><a class="btn btn-red" href="#calc">Рассчитать <span aria-hidden="true">↗</span></a></div>
         </article>
         <article class="s-card sp">
           <h3>Железнодорожные перевозки</h3>
           <p>Основную часть пути контейнер проходит поездом. Организуем железнодорожную доставку.</p>
-          <div class="ph"><img src="img/svc-rail.jpg?v=3" alt="Поезд с контейнерами в зимней тайге" loading="lazy" width="1200" height="800"></div>
+          <div class="ph"><img src="img/svc-rail.webp?v=w1" alt="Поезд с контейнерами в зимней тайге" loading="lazy" width="1200" height="800"></div>
           <div class="row"><a class="btn btn-red" href="#calc">Рассчитать <span aria-hidden="true">↗</span></a></div>
         </article>
         <article class="s-card sp">
           <h3>Доставка по Сибири</h3>
           <p>Из Иркутска до адреса получателя. Согласуем условия доставки по вашему направлению.</p>
-          <div class="ph"><img src="img/svc-siberia.jpg?v=3" alt="Контейнеровоз на зимней дороге в горах" loading="lazy" width="1200" height="800"></div>
+          <div class="ph"><img src="img/svc-siberia.webp?v=w1" alt="Контейнеровоз на зимней дороге в горах" loading="lazy" width="1200" height="800"></div>
           <div class="row"><a class="btn btn-red" href="#calc">Рассчитать <span aria-hidden="true">↗</span></a></div>
         </article>
         <article class="s-card sp">
           <h3>Другие направления</h3>
           <p>Красноярск, Благовещенск, Хабаровск, Владивосток. Сроки и стоимость рассчитаем под ваш груз.</p>
-          <div class="ph"><img src="img/svc-directions.jpg?v=3" alt="Карта направлений по России" loading="lazy" width="1200" height="800"></div>
+          <div class="ph"><img src="img/svc-directions.webp?v=w1" alt="Карта направлений по России" loading="lazy" width="1200" height="800"></div>
           <div class="row"><a class="btn btn-red" href="#calc">Рассчитать <span aria-hidden="true">↗</span></a></div>
         </article>
         <article class="s-card sp">
           <h3>Импорт и экспорт</h3>
           <p>Китай, Япония, Корея. Контейнерная доставка, в том числе через морские порты.</p>
-          <div class="ph"><img src="img/svc-import.jpg?v=3" alt="Контейнеровоз в морском порту" loading="lazy" width="1200" height="800"></div>
+          <div class="ph"><img src="img/svc-import.webp?v=w1" alt="Контейнеровоз в морском порту" loading="lazy" width="1200" height="800"></div>
           <div class="row"><a class="btn btn-red" href="#calc">Рассчитать <span aria-hidden="true">↗</span></a></div>
         </article>
         <article class="s-card sp">
           <h3>Автодоставка с Китаем</h3>
           <p>Перевозки из Китая и в Китай через проверенных партнёров. Условия подбираем под вашу задачу.</p>
-          <div class="ph"><img src="img/svc-china.jpg?v=3" alt="Контейнеровоз на пограничном переходе" loading="lazy" width="1200" height="800"></div>
+          <div class="ph"><img src="img/svc-china.webp?v=w1" alt="Контейнеровоз на пограничном переходе" loading="lazy" width="1200" height="800"></div>
           <div class="row"><a class="btn btn-red" href="#calc">Рассчитать <span aria-hidden="true">↗</span></a></div>
         </article>
       </div>
@@ -666,13 +672,13 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
     <div class="hm">
       <h2 id="how-h">Как мы <span class="accent">работаем</span></h2>
       <p class="hm-sub">От заявки до доставки. Один логист на связи.</p>
-      <img class="hm-strip" src="img/how-strip.jpg?v=3" alt="Заявка, расчёт и договор, погрузка у склада, доставка поездом и машиной" loading="lazy" width="3360" height="386">
+      <img class="hm-strip" src="img/how-strip.webp?v=w1" alt="Заявка, расчёт и договор, погрузка у склада, доставка поездом и машиной" loading="lazy" width="3360" height="386">
       <div class="hm-line" aria-hidden="true"><b style="left:6.4%">01</b><b style="left:30.4%">02</b><b style="left:51.6%">03</b><b style="left:81%">04</b></div>
       <ol class="hm-s">
-        <li><img class="hm-ic" src="img/how-ic1.jpg?v=3" alt="" loading="lazy"><span class="hm-n">01</span><h3>Заявка</h3><p>Сообщите маршрут, груз и вес. За 30 минут рассчитаем стоимость и срок.</p></li>
-        <li><img class="hm-ic" src="img/how-ic2.jpg?v=3" alt="" loading="lazy"><span class="hm-n">02</span><h3>Расчёт и договор</h3><p>Согласуем цену с НДС, сроки и дату погрузки. Подпишем договор.</p></li>
-        <li><img class="hm-ic" src="img/how-ic3.jpg?v=3" alt="" loading="lazy"><span class="hm-n">03</span><h3>Погрузка у вас</h3><p>Подадим контейнеровоз к складу. Загрузка через задние двери, как у фуры.</p></li>
-        <li><img class="hm-ic" src="img/how-ic4.jpg?v=3" alt="" loading="lazy"><span class="hm-n">04</span><h3>Доставка до двери</h3><p>Основной путь поездом, затем машиной до получателя. Логист на связи.</p></li>
+        <li><img class="hm-ic" src="img/how-ic1.webp?v=w1" alt="" loading="lazy"><span class="hm-n">01</span><h3>Заявка</h3><p>Сообщите маршрут, груз и вес. За 30 минут рассчитаем стоимость и срок.</p></li>
+        <li><img class="hm-ic" src="img/how-ic2.webp?v=w1" alt="" loading="lazy"><span class="hm-n">02</span><h3>Расчёт и договор</h3><p>Согласуем цену с НДС, сроки и дату погрузки. Подпишем договор.</p></li>
+        <li><img class="hm-ic" src="img/how-ic3.webp?v=w1" alt="" loading="lazy"><span class="hm-n">03</span><h3>Погрузка у вас</h3><p>Подадим контейнеровоз к складу. Загрузка через задние двери, как у фуры.</p></li>
+        <li><img class="hm-ic" src="img/how-ic4.webp?v=w1" alt="" loading="lazy"><span class="hm-n">04</span><h3>Доставка до двери</h3><p>Основной путь поездом, затем машиной до получателя. Логист на связи.</p></li>
       </ol>
     </div>
   </div>
@@ -687,7 +693,7 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
         <div class="big" style="margin-top:14px">до 45%</div>
         <p style="margin-top:16px">на доставке в Сибирь и на Дальний Восток: самую длинную часть пути контейнер проходит по железной дороге, а машины работают только в начале и в конце.</p>
       </div>
-      <img src="img/train.jpg" alt="" aria-hidden="true" style="mix-blend-mode:multiply;filter:grayscale(.15)">
+      <img src="img/train.webp?v=w1" alt="" aria-hidden="true" style="mix-blend-mode:multiply;filter:grayscale(.15)">
     </div>
     <form class="form" id="calcForm" novalidate>
       <label>Откуда<input name="from" placeholder="Город погрузки"></label>
@@ -698,7 +704,8 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
       <label>Имя<input name="name" autocomplete="name"></label>
       <label>Телефон<input name="phone" type="tel" autocomplete="tel" required></label>
       <label class="full">E-mail<input name="email" type="email" autocomplete="email"></label>
-      <label class="full agree"><input type="checkbox" name="agree" required> Я даю согласие на обработку персональных данных</label>
+      <label class="full agree"><input type="checkbox" name="agree" required> <span>Я даю согласие на обработку персональных данных в соответствии с <a href="politika.html" target="_blank">политикой конфиденциальности</a></span></label>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn btn-red full" type="submit">Получить расчёт</button>
       <p class="note full" id="formNote">Рассчитаем стоимость с НДС и срок. Если груз нужно уточнить под контейнер, сразу спросим.</p>
     </form>
@@ -711,13 +718,13 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
   <div class="wrap">
     <div class="mx">
       <div class="mx-txt">
-        <h2 id="max-h">Актуальные цены<br><span class="mx-l2"><span class="accent">в нашем</span> <img class="mx-logo" src="img/max-logo.png" alt="MAX" width="670" height="180"></span></h2>
+        <h2 id="max-h">Актуальные цены<br><span class="mx-l2"><span class="accent">в нашем</span> <img class="mx-logo" src="img/max-logo.webp?v=w1" alt="MAX" width="670" height="180"></span></h2>
         <p>Публикуем прайс на перевозки в нашем канале. Подпишитесь, чтобы следить за обновлениями и планировать отправки.</p>
         <!-- TODO: ссылка на канал в MAX -->
-        <a class="mx-btn" href="#max" data-max-link target="_blank" rel="noopener"><span class="mx-ic"><img src="img/max-icon.png" alt=""></span>Открыть канал в MAX <span aria-hidden="true">↗</span></a>
+        <a class="mx-btn" href="#max" data-max-link target="_blank" rel="noopener"><span class="mx-ic"><img src="img/max-icon.webp?v=w1" alt=""></span>Открыть канал в MAX <span aria-hidden="true">↗</span></a>
         <small>Нужен расчёт под ваш груз? <a href="#calc">Оставьте заявку на сайте.</a></small>
       </div>
-      <div class="mx-ph"><img src="img/max-phone.png?v=2" alt="Канал АЛЬФА ГРУПП в MAX: закреплённый прайс на перевозки" loading="lazy" width="808" height="1456"></div>
+      <div class="mx-ph"><img src="img/max-phone.webp?v=w1" alt="Канал АЛЬФА ГРУПП в MAX: закреплённый прайс на перевозки" loading="lazy" width="808" height="1456"></div>
     </div>
   </div>
 </section>
@@ -730,13 +737,13 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
       <p>Забираем груз у вашего склада и доставляем получателю. Основной путь контейнер проходит по железной дороге.</p>
     </div>
     <div class="why2 why2-top">
-      <div class="wc wc-price"><img src="img/why-price.jpg?v=3" alt="" loading="lazy"><div class="t"><h3>Выгодно</h3><p>Основной путь по железной дороге, поэтому дешевле фуры на весь маршрут.</p></div></div>
-      <div class="wc wc-schedule"><img src="img/why-schedule.jpg?v=2" alt="" loading="lazy"><div class="t"><h3>По расписанию</h3><p>Планируем перевозку по расписанию поездов и согласуем сроки заранее.</p></div></div>
-      <div class="wc wc-direct"><img src="img/why-direct.jpg?v=2" alt="" loading="lazy"><div class="t"><h3>Без перегрузок</h3><p>Груз весь путь едет в одном контейнере.</p></div></div>
+      <div class="wc wc-price"><img src="img/why-price.webp?v=w1" alt="" loading="lazy"><div class="t"><h3>Выгодно</h3><p>Основной путь по железной дороге, поэтому дешевле фуры на весь маршрут.</p></div></div>
+      <div class="wc wc-schedule"><img src="img/why-schedule.webp?v=w1" alt="" loading="lazy"><div class="t"><h3>По расписанию</h3><p>Планируем перевозку по расписанию поездов и согласуем сроки заранее.</p></div></div>
+      <div class="wc wc-direct"><img src="img/why-direct.webp?v=w1" alt="" loading="lazy"><div class="t"><h3>Без перегрузок</h3><p>Груз весь путь едет в одном контейнере.</p></div></div>
     </div>
     <div class="why2 why2-bot">
-      <div class="wc wc-warehouse"><img src="img/why-warehouse.jpg?v=2" alt="" loading="lazy"><div class="t"><h3>Ваш склад не меняется</h3><p>Подъездные ЖД-пути не нужны. Контейнер приезжает на машине, загрузка через задние двери, как у фуры.</p></div></div>
-      <div class="wc wc-contact dark"><img src="img/why-contact.jpg?v=2" alt="" loading="lazy"><div class="t"><h3>Всегда на связи</h3><p>Логист ведёт вашу заявку от расчёта до выгрузки у получателя.</p></div></div>
+      <div class="wc wc-warehouse"><img src="img/why-warehouse.webp?v=w1" alt="" loading="lazy"><div class="t"><h3>Ваш склад не меняется</h3><p>Подъездные ЖД-пути не нужны. Контейнер приезжает на машине, загрузка через задние двери, как у фуры.</p></div></div>
+      <div class="wc wc-contact dark"><img src="img/why-contact.webp?v=w1" alt="" loading="lazy"><div class="t"><h3>Всегда на связи</h3><p>Логист ведёт вашу заявку от расчёта до выгрузки у получателя.</p></div></div>
     </div>
   </div>
 </section>
@@ -746,7 +753,7 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
   <div class="wrap">
     <div class="ab">
       <div class="ab-boss">
-        <div class="ab-ph"><img src="img/director.jpg" alt="Биктимиров Дмитрий Максудович, генеральный директор АЛЬФА ГРУПП" loading="lazy"></div>
+        <div class="ab-ph"><img src="img/director.webp?v=w1" alt="Биктимиров Дмитрий Максудович, генеральный директор АЛЬФА ГРУПП" loading="lazy"></div>
         <b>Биктимиров Дмитрий Максудович</b>
         <span>Генеральный директор</span>
       </div>
@@ -754,7 +761,7 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
         <h2 id="about-h">Познакомьтесь с <span class="accent">АЛЬФА ГРУПП</span></h2>
         <p>Посмотрите, как устроена наша работа: автопарк, терминал и люди, которые организуют вашу перевозку.</p>
         <a class="ab-video" href="https://www.youtube.com/watch?v=eV9p0SPZkpA" target="_blank" rel="noopener">
-          <video muted loop playsinline preload="none" poster="video/about.jpg?v=1" data-src="video/about.mp4?v=1" aria-hidden="true"></video>
+          <video muted loop playsinline preload="none" poster="video/about.webp?v=w1" data-src="video/about.mp4?v=1" aria-hidden="true"></video>
           <i class="play" aria-hidden="true"></i>
           <span>Смотреть видео о компании</span>
         </a>
@@ -820,7 +827,7 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
         <span>Будьте в курсе<br>наших новостей</span>
         <svg class="ft-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         <!-- TODO: ссылка на канал в MAX -->
-        <a class="ft-soc" href="#max" aria-label="Наш канал в MAX" data-max-link><img src="img/max-icon.png" alt=""></a>
+        <a class="ft-soc" href="#max" aria-label="Наш канал в MAX" data-max-link><img src="img/max-icon.webp?v=w1" alt=""></a>
       </div>
     </div>
     <div class="ft-col">
@@ -841,7 +848,7 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
         <li><a href="#about">О компании</a></li>
         <li><a href="#faq">Вопросы и ответы</a></li>
         <li><a href="#calc">Рассчитать перевозку</a></li>
-        <li><a href="#" data-policy>Политика конфиденциальности</a></li>
+        <li><a href="politika.html">Политика конфиденциальности</a></li>
       </ul>
     </nav>
     <div class="ft-col">
@@ -855,7 +862,7 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
     <a class="ft-promo" href="#calc">
       <b>Отправьте груз<br>в Сибирь<br><span>уже сегодня</span></b>
       <em>Рассчитать перевозку →</em>
-      <img src="img/truck-side.png" alt="" loading="lazy">
+      <img src="img/truck-side.webp?v=w1" alt="" loading="lazy">
     </a>
   </div>
   <div class="wrap ft-bot">
@@ -879,19 +886,30 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
   var b=document.getElementById('pauseBtn'),box=document.getElementById('routeBox');
   b.addEventListener('click',function(){var p=box.classList.toggle('paused');b.setAttribute('aria-pressed',p);b.textContent=p?'Продолжить анимацию':'Приостановить анимацию';});
 })();
-// форма: заявка уходит в WhatsApp компании готовым сообщением
+// форма: заявка уходит в наш сервис «Логистика» (лид в CRM); если он недоступен — в WhatsApp готовым сообщением
 (function(){
-  var f=document.getElementById('calcForm'),n=document.getElementById('formNote'),WA='79025481033';
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(!f.phone.value.trim()){n.textContent='Укажите телефон, чтобы мы могли прислать расчёт.';n.className='note full';f.phone.focus();return;}
-    if(!f.agree.checked){n.textContent='Отметьте согласие на обработку данных.';n.className='note full';return;}
-    var v=function(k){return (f[k]&&f[k].value||'').trim();};
+  // Адрес приёма заявок. Пусто — пока сервис не открыт в интернет (подключим вместе с доменом), тогда работает WhatsApp.
+  var LEAD_URL='';
+  var f=document.getElementById('calcForm'),n=document.getElementById('formNote'),btn=f.querySelector('button[type=submit]'),WA='79025481033';
+  var v=function(k){return (f[k]&&f[k].value||'').trim();};
+  function viaWhatsApp(){
     var lines=['Заявка на расчёт с сайта АЛЬФА ГРУПП'];
     [['Откуда','from'],['Куда','to'],['Груз','cargo'],['Вес, т','weight'],['Комментарий','comment'],['Имя','name'],['Телефон','phone'],['E-mail','email']].forEach(function(x){var t=v(x[1]); if(t) lines.push(x[0]+': '+t);});
     window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener');
     n.innerHTML='Открываем WhatsApp с вашей заявкой — нажмите «Отправить». Если не открылся, позвоните: <a href="tel:+79025481033">+7 (902) 548-10-33</a>.';
     n.className='ok full';
+  }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!v('phone')){n.textContent='Укажите телефон, чтобы мы могли прислать расчёт.';n.className='note full';f.phone.focus();return;}
+    if(!f.agree.checked){n.textContent='Отметьте согласие на обработку данных.';n.className='note full';return;}
+    if(!LEAD_URL){viaWhatsApp();return;}
+    var data={agree:true};['name','phone','email','from','to','cargo','weight','comment','website'].forEach(function(k){data[k]=v(k);});
+    btn.disabled=true;n.textContent='Отправляем…';n.className='note full';
+    fetch(LEAD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){if(!r.ok) throw 0; f.reset(); n.textContent='Спасибо! Заявка получена — логист перезвонит и пришлёт расчёт.'; n.className='ok full';})
+      .catch(viaWhatsApp)
+      .then(function(){btn.disabled=false;});
   });
 })();
 if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(function(){});
@@ -900,7 +918,7 @@ if('serviceWorker' in navigator && location.protocol==='https:') navigator.servi
 <!-- ВСПЛЫВАЮЩЕЕ ВИДЕО (ролик 285 КБ грузится через 4 с после открытия страницы) -->
 <div class="vw" id="vw" hidden>
   <button class="vw-open" type="button" aria-label="Смотреть видео о компании">
-    <video muted loop playsinline preload="none" poster="video/promo.jpg?v=2" data-src="video/promo.mp4?v=2"></video>
+    <video muted loop playsinline preload="none" poster="video/promo.webp?v=w1" data-src="video/promo.mp4?v=2"></video>
     <span class="vw-cap"><i aria-hidden="true"></i>Наша автоколонна</span>
   </button>
   <button class="vw-x" type="button" aria-label="Закрыть видео">×</button>
