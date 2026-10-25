@@ -859,14 +859,15 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 })();
 // форма: заявка уходит в наш сервис «Логистика» (лид в CRM); если он недоступен — в WhatsApp готовым сообщением
 (function(){
-  // Адрес приёма заявок. Пусто — пока сервис не открыт в интернет (подключим вместе с доменом), тогда работает WhatsApp.
-  var LEAD_URL='';
+  // Адрес приёма заявок — сервис на iMac через ngrok. Если он недоступен или молчит 8 секунд — заявка уходит в WhatsApp.
+  var LEAD_URL='https://staleness-unpaved-crushable.ngrok-free.dev/api/site/lead';
   var f=document.getElementById('calcForm'),n=document.getElementById('formNote'),btn=f.querySelector('button[type=submit]'),WA='79025481033';
   var v=function(k){return (f[k]&&f[k].value||'').trim();};
   function viaWhatsApp(){
     var lines=['Заявка на расчёт с сайта АЛЬФА ГРУПП'];
     [['Откуда','from'],['Куда','to'],['Груз','cargo'],['Вес, т','weight'],['Комментарий','comment'],['Имя','name'],['Телефон','phone'],['E-mail','email']].forEach(function(x){var t=v(x[1]); if(t) lines.push(x[0]+': '+t);});
-    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener');
+    var url='https://wa.me/'+WA+'?text='+encodeURIComponent(lines.join('\n'));
+    var w=window.open(url,'_blank'); if(w) w.opener=null; else location.href=url; // если браузер заблокировал новую вкладку — открываем в этой
     n.innerHTML='Открываем WhatsApp с вашей заявкой — нажмите «Отправить». Если не открылся, позвоните: <a href="tel:+79025481033">+7 (902) 548-10-33</a>.';
     n.className='ok full';
   }
@@ -877,7 +878,8 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
     if(!LEAD_URL){viaWhatsApp();return;}
     var data={agree:true};['name','phone','email','from','to','cargo','weight','comment','website'].forEach(function(k){data[k]=v(k);});
     btn.disabled=true;n.textContent='Отправляем…';n.className='note full';
-    fetch(LEAD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    var ctl=window.AbortController?new AbortController():null; if(ctl) setTimeout(function(){ctl.abort();},8000);
+    fetch(LEAD_URL,{signal:ctl&&ctl.signal,method:'POST',headers:{'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},body:JSON.stringify(data)})
       .then(function(r){if(!r.ok) throw 0; f.reset(); n.textContent='Спасибо! Заявка получена — логист перезвонит и пришлёт расчёт.'; n.className='ok full';})
       .catch(viaWhatsApp)
       .then(function(){btn.disabled=false;});
