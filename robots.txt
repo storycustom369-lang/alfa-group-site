@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://storycustom369-lang.github.io/alfa-group-site/sitemap.xml
